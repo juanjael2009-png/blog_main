@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 URL configuration for blog_main project.
 

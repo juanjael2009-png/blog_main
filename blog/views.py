@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 from django.db.models import Q
-from django.shortcuts import render, get_list_or_404, render
+from django.shortcuts import render, get_object_or_404, render
 
 from .models import Post, Category
 
@@ -11,11 +12,10 @@ def home(request):
     }
     return render(request, 'blog/home.html', context)
 
-def detail(resquet, id):
-    post = get_list_or_404(Post, id=id, status=Post.ACTIVE)
-
+def detail(request, id):
+    post = get_object_or_404(Post, id=id, status=Post.ACTIVE)
 
     context = {
-       'post': post,
+        'post': post,
     }
-    return render(resquet, 'blog/detail.html',context)
+    return render(request, 'blog/detail.html', context)

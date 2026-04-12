@@ -3,7 +3,6 @@ from django.db import models
 # Create your models here.
 class Category(models.Model):
     title = models.CharField(max_length=255)
-    slug = models.SlugField()
 
     class Meta:
         ordering = ('title',)
@@ -33,6 +32,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return '/%s/%s/' % (self.category.slug, self.slug)
 
 class Comment(models.Model):
     post = models.ForeignKey(Post, related_name='comments', on_delete=models.CASCADE)
